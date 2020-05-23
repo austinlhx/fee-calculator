@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const prefix = "!";
 
-const token = 'Insert Bot Token'; 
+const token = 'NzEzNjY2NDU3OTMzODQwNDk1.Xsjbuw.NU-ZhfAfd84iNMTHcLDQ9iPjjKs'; 
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -22,7 +22,7 @@ bot.on("ready", () => {
 
 
 bot.on("message", msg => {
-    if (msg.channel.id === "Insert Channel ID") { 
+    if (msg.channel.id === "713618595472474174") { 
         if (msg.author.bot) return;
         var command = msg.content
             .toLowerCase()
@@ -35,7 +35,6 @@ bot.on("message", msg => {
         }
 
         if (command === "fee"){
-            console.log('test');
             let messageArray = msg.content.split(" ");
             let args = messageArray.slice(1);
             if (!args[0])
@@ -44,14 +43,14 @@ bot.on("message", msg => {
 
             var pricing = args[0];
 
-            let payPal = ((pricing * 1.029) + 0.3);
-            let ebay = (pricing * 1.129);
-            let goat = ((pricing * 1.095) + 5);
-            let grailed = (pricing * 1.0629);
-            let stockx_one = (pricing * 1.095);
-            let stockx_two = (pricing * 1.09);
-            let stockx_three = (pricing * 1.085);
-            let stockx_four = (pricing * 1.08);
+            let payPal = ((pricing * 0.971) - 0.3);
+            let ebay = (pricing * 0.871);
+            let goat = ((pricing * 0.905) - 5);
+            let grailed = (pricing * 0.911);
+            let stockx_one = (pricing * - 0.905);
+            let stockx_two = (pricing * 0.91);
+            let stockx_three = (pricing * 0.915);
+            let stockx_four = (pricing * 0.92);
 
             const formatter = new Intl.NumberFormat('en-US', {
                 style: 'currency',
@@ -68,7 +67,7 @@ bot.on("message", msg => {
                 },
                 thumbnail: {
                     url:
-                        "Insert Custom Logo"
+                        "Insert Custom Branding"
                 },
                 author: {
                     name: "Account Generator",
@@ -78,35 +77,35 @@ bot.on("message", msg => {
                 fields: [
                     {
                         name: 'PayPal (2.9% + $0.30)',
-                        value: (formatter.format(payPal)) + ' | ' + (formatter.format(payPal - pricing)),
+                        value: (formatter.format(payPal)) + ' | ' + (formatter.format(pricing - payPal)),
                     },
                     {
                         name: 'eBay (10% + 2.9%)',
-                        value: (formatter.format(ebay)) + ' | ' + (formatter.format(ebay - pricing)),
+                        value: (formatter.format(ebay)) + ' | ' + (formatter.format(pricing - ebay)),
                     },
                     {
                         name: 'Goat (9.5% + $5)',
-                        value: (formatter.format(goat)) + ' | ' + (formatter.format(goat - pricing)),
+                        value: (formatter.format(goat)) + ' | ' + (formatter.format(pricing - goat)),
                     },
                     {
                         name: 'Grailed (6% + 2.9%)',
-                        value: (formatter.format(grailed)) + ' | ' + (formatter.format(grailed - pricing)),
+                        value: (formatter.format(grailed)) + ' | ' + (formatter.format(pricing - grailed)),
                     },
                     {
                         name: 'StockX Level1 (9.5%)',
-                        value: (formatter.format(stockx_one)) + ' | ' + (formatter.format(stockx_one - pricing)),
+                        value: (formatter.format(stockx_one)) + ' | ' + (formatter.format(pricing - stockx_one)),
                     },
                     {
                         name: 'StockX Level2 (9.0%)',
-                        value: (formatter.format(stockx_two)) + ' | ' + (formatter.format(stockx_two - pricing)),
+                        value: (formatter.format(stockx_two)) + ' | ' + (formatter.format(pricing - stockx_two)),
                     },
                     {
                         name: 'StockX Level3 (8.5%)',
-                        value: (formatter.format(stockx_three)) + ' | ' + (formatter.format(stockx_three - pricing)),
+                        value: (formatter.format(stockx_three)) + ' | ' + (formatter.format(pricing - stockx_three)),
                     },
                     {
                         name: 'StockX Level4 (8.0%)',
-                        value: (formatter.format(stockx_four)) + ' | ' + (formatter.format(stockx_four - pricing)),
+                        value: (formatter.format(stockx_four)) + ' | ' + (formatter.format(pricing - stockx_four)),
                     }
                 ],
                 footer: {
