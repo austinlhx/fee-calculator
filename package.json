@@ -1,0 +1,23 @@
+{
+  "name": "fee-calculator",
+  "version": "1.0.0",
+  "description": "fee-calculator bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "!test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinlhx/fee-calculator.git"
+  },
+  "author": "austinlhx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austinlhx/fee-calculator/issues"
+  },
+  "homepage": "https://github.com/austinlhx/fee-calculator#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "moment": "^2.26.0"
+  }
+}
