@@ -7,7 +7,7 @@ const prefix = "!";
 const token = 'Insert Bot Token'; 
 
 
-app.set('port', (process.env.PORT));
+app.set('port', (process.env.PORT || 5000));
 
 app.get(prefix, function (request, response) {
     var result = 'App is running'
@@ -22,45 +22,53 @@ bot.on("ready", () => {
 
 
 bot.on("message", msg => {
-    if (msg.channel.id === "Insert Channel ID here") { 
+    if (msg.channel.id === "Insert Channel ID") { 
         if (msg.author.bot) return;
-        var command = message.content
+        var command = msg.content
             .toLowerCase()
-            .substr(1);
-        let messageArray = message.content.split(" ");
-        let args = messageArray.slice(1);
+            .slice(prefix.length)
+            .split(" ")[0];
+        
 
         if (command === "test"){
             msg.channel.send("The Fee Calculator bot is up and running!");
         }
 
         if (command === "fee"){
-            if (!args[0]){
-                message.channel.send("Please insert the price " + message.author);
-            }
+            console.log('test');
+            let messageArray = msg.content.split(" ");
+            let args = messageArray.slice(1);
+            if (!args[0])
+                return msg.reply("Please insert a price ");
+            
 
             var pricing = args[0];
-            
-            let payPal = (pricing * (1 - 0.029)) + 0.3;
-            let ebay = (pricing * (1 - 0.1 - 0.029))
-            let goat = (pricing * (1 - 0.095) + 5);
-            let grailed = (pricing * (1 - 0.06 - 0.029));
-            let stockx_one = (pricing * (1 - 0.095));
-            let stockx_two = (pricing * (1 - 0.09));
-            let stockx_three = (pricing * (1 - 0.085));
-            let stockx_four = (pricing * (1 - 0.08));
+
+            let payPal = ((pricing * 1.029) + 0.3);
+            let ebay = (pricing * 1.129);
+            let goat = ((pricing * 1.095) + 5);
+            let grailed = (pricing * 1.0629);
+            let stockx_one = (pricing * 1.095);
+            let stockx_two = (pricing * 1.09);
+            let stockx_three = (pricing * 1.085);
+            let stockx_four = (pricing * 1.08);
+
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+              })
 
             const embed = {
                 title: "Fee Calculator",
                 color: 8519796,
-                timestamp: currentTime,
                 footer: {
                     icon_url:
                         "https://cdn.discordapp.com/avatars/530778425540083723/7a05e4dd16825d47b6cdfb02b92d26a5.png",
                 },
                 thumbnail: {
                     url:
-                        "https://i.ibb.co/f9CvMvX/Untitled-1-8.png"
+                        "Insert Custom Logo"
                 },
                 author: {
                     name: "Account Generator",
@@ -70,35 +78,35 @@ bot.on("message", msg => {
                 fields: [
                     {
                         name: 'PayPal (2.9% + $0.30)',
-                        value: payPal + ' | ' + (pricing - paypal),
+                        value: (formatter.format(payPal)) + ' | ' + (formatter.format(payPal - pricing)),
                     },
                     {
                         name: 'eBay (10% + 2.9%)',
-                        value: ebay + ' | ' + (pricing - ebay),
+                        value: (formatter.format(ebay)) + ' | ' + (formatter.format(ebay - pricing)),
                     },
                     {
                         name: 'Goat (9.5% + $5)',
-                        value: goat + ' | ' + (pricing - goat),
+                        value: (formatter.format(goat)) + ' | ' + (formatter.format(goat - pricing)),
                     },
                     {
                         name: 'Grailed (6% + 2.9%)',
-                        value: grailed + ' | ' + (pricing - grailed),
+                        value: (formatter.format(grailed)) + ' | ' + (formatter.format(grailed - pricing)),
                     },
                     {
                         name: 'StockX Level1 (9.5%)',
-                        value: stockx_one + ' | ' + (pricing - stockx_one),
+                        value: (formatter.format(stockx_one)) + ' | ' + (formatter.format(stockx_one - pricing)),
                     },
                     {
                         name: 'StockX Level2 (9.0%)',
-                        value: stockx_two + ' | ' + (pricing - stockx_two),
+                        value: (formatter.format(stockx_two)) + ' | ' + (formatter.format(stockx_two - pricing)),
                     },
                     {
                         name: 'StockX Level3 (8.5%)',
-                        value: stockx_three + ' | ' + (pricing - stockx_three),
+                        value: (formatter.format(stockx_three)) + ' | ' + (formatter.format(stockx_three - pricing)),
                     },
                     {
                         name: 'StockX Level4 (8.0%)',
-                        value: stockx_four + ' | ' + (pricing - stockx_four),
+                        value: (formatter.format(stockx_four)) + ' | ' + (formatter.format(stockx_four - pricing)),
                     }
                 ],
                 footer: {
@@ -106,7 +114,7 @@ bot.on("message", msg => {
                 },
                 timestamp: new Date(),
             };
-            message.channel.send({ embed });
+            msg.channel.send({ embed });
         }
         
     }
