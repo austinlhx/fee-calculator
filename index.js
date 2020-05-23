@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const prefix = "!";
 
-const token = 'NzEzNjY2NDU3OTMzODQwNDk1.Xsjbuw.NU-ZhfAfd84iNMTHcLDQ9iPjjKs'; 
+const token = 'Insert Bot Token'; 
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -22,7 +22,7 @@ bot.on("ready", () => {
 
 
 bot.on("message", msg => {
-    if (msg.channel.id === "713618595472474174") { 
+    if (msg.channel.id === "INSERT Channel ID") { 
         if (msg.author.bot) return;
         var command = msg.content
             .toLowerCase()
